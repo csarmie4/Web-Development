@@ -1,0 +1,57 @@
+.container {
+    width: 60%;
+    margin: auto;
+    padding: 100px;
+    text-align: center;
+    background-color:rgb(43, 66, 100);
+}
+
+form {
+    padding: 20px 40px 40px 40px;
+    background-color:bisque;
+}
+
+.form-group {
+    padding-bottom: 10px;
+}
+
+.post {
+    border: 1px solid black;
+    margin: 20px;
+    background-color: blueviolet;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: rgb(215, 215, 215);
+    overflow: hidden;
+  }
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #503a94;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: rgba(221, 221, 221, 0.829);
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #7a5d8c;
+  color: white;
+}

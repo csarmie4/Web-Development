@@ -1,0 +1,86 @@
+<div class="topnav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/page1">Best movies</a></li>
+        <li><a href="/page2">Worst movies</a></li>
+        <li><a href="/page3">Movie reviews</a></li>
+        <li><a href="/page4">Directors</a></li>
+        <li><a href="/page5">Movie Ratings</a></li>
+    </ul>
+</div>
+
+
+
+<form method="POST" action="/post" id="post-form"> <!-- was method="POST" instead of id="post-form" -->
+    <h2>Create Post</h2>
+    <div class="form-group">
+        <label for="movie_name">Movie Name:</label>
+        <input id="title-input" type="text" name="movie_name">
+    </div>
+    <div class="form-group">
+        <label for="movie_year">Movie Year:</label>
+        <input id="body-input" type="text" name="movie_year">
+    </div>
+    <div class="form-group">
+        <label for="movie_rating">Movie Rating:</label>
+        <input id="body-input" type="text" name="movie_rating">
+    </div>
+    <div class="form-group">
+        <label for="movie_review">Movie Review:</label>
+        <input id="body-input" type="float" name="movie_review">
+    </div>
+    <div class="form-group">
+        <label for="movie_director">Director:</label>
+        <input id="body-input" type="text" name="movie_director">
+    </div>
+    <input type="submit">
+</form>
+
+<h1>All Posts</h1>
+
+<div class="search">
+    <input id="search-bar" type="text">
+    {{!-- <button id="search-btn">Search</button> --}}
+</div>
+
+<div id="post-container">
+    {{#if data}}
+        {{#each data}}
+            <div class="post">
+                <h3>{{this.movie_name}}</h3>
+                <p>{{this.movie_year}}</p>
+                {{!-- <a href="/post/{{this.id}}">view post</a> --}}
+            </div>
+        {{/each}}
+    {{else}}
+        <div>
+            <h1>There are no posts yet</h1>
+            <p>Create the first one!</p>
+        </div>
+    {{/if}}
+</div>
+
+<script>
+    $(document).ready(() => {
+        $('#search-bar').on('keyup', () => {
+            const value = $('#search-bar').val().toLowerCase();
+            $.get('/api/posts/search/' + value, (data) => {
+                
+                $('#post-container').empty();
+
+                if (data.length == 0) {
+                    $('#post-container').append("<h3>No Posts Found</h3>");
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    $('#post-container').append(
+                        `<div class="post">
+                            <h3>${data[i].movie_name}</h3>
+                            <p>${data[i].movie_year}</p>
+                            <a href="/post/${data[i].id}>view post</a>"
+                        </div>`);
+                }
+            });
+        });
+    });
+</script>

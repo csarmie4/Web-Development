@@ -1,0 +1,31 @@
+<div class="topnav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/page1">Best movies</a></li>
+        <li><a href="/page2">Worst movies</a></li>
+        <li><a href="/page3">Movie reviews</a></li>
+        <li><a href="/page4">Directors</a></li>
+        <li><a href="/page5">Movie Ratings</a></li>
+    </ul>
+</div>
+
+<div>
+    <h1>Worst Movies</h1>
+</div>
+
+<div id="post-container">
+    {{#if data}}
+        {{#each data}}
+            <div class="post">
+                <h3>{{this.movie_name}}</h3>
+                <p>{{this.movie_rating}}</p>
+                {{!-- <a href="/post/{{this.id}}">view post</a> --}}
+            </div>
+        {{/each}}
+    {{else}}
+        <div>
+            <h1>There are no posts yet</h1>
+            <p>Create the first one!</p>
+        </div>
+    {{/if}}
+</div>
