@@ -3,12 +3,18 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const { Sequelize, DataTypes } = require('sequelize'); // ORM
 const _ = require('underscore');
-const PORT = process.env.PORT || 3000;
+//const PORT = process.env.PORT || 3000;
 
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+const DBName = process.env.db_name;
+const DBUser = process.env.db_user;
+const DBPass = process.env.db_pass;
+const DBHost = process.env.db_host;
 // setup sequelize
 // make sure your database 'fullstackapp' is already created and mysql is running
-const sequelize = new Sequelize('drk33r5e7qrpf', 'rabmmcvdszccrh', '2f775bb921035d31725042144513d0a69a13770eafc52046cb7a59c66f98d848', {
-    host: 'ec2-54-165-184-219.compute-1.amazonaws.com',
+const sequelize = new Sequelize(DBName, DBUser, DBPass, {
+    host: DBHost,
     dialect: 'postgres',
     dialectOptions: {
         ssl: {
